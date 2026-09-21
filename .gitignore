@@ -7,5 +7,5 @@
 .coverage
 coverage.html
 
-/.bin/
 .mypy_cache
+.DS_Store
