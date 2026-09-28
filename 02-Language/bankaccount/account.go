@@ -7,6 +7,7 @@ func NewAccount(initial Money) (*Account, error) {
 	if initial < 0 {
 		return nil, ErrInvalidAmount
 	}
+
 	return &Account{balance: initial}, nil
 }
 
@@ -14,10 +15,6 @@ func NewAccount(initial Money) (*Account, error) {
 func Balance(account *Account) (Money, error) {
 	if account == nil {
 		return 0, ErrNilAccount
-	}
-
-	if account.balance < 0 {
-		return 0, ErrInvalidAmount
 	}
 
 	return account.balance, nil
@@ -29,15 +26,12 @@ func Deposit(account *Account, amount Money) error {
 		return ErrNilAccount
 	}
 
-	if account.balance < 0 {
-		return ErrInvalidAmount
-	}
-
 	if amount <= 0 {
 		return ErrInvalidAmount
 	}
 
 	account.balance += amount
+
 	return nil
 }
 
@@ -45,10 +39,6 @@ func Deposit(account *Account, amount Money) error {
 func Withdraw(account *Account, amount Money) error {
 	if account == nil {
 		return ErrNilAccount
-	}
-
-	if account.balance < 0 {
-		return ErrInvalidAmount
 	}
 
 	if (account.balance - amount) < 0 {
@@ -60,6 +50,7 @@ func Withdraw(account *Account, amount Money) error {
 	}
 
 	account.balance -= amount
+
 	return nil
 }
 
@@ -67,10 +58,6 @@ func Withdraw(account *Account, amount Money) error {
 func Transfer(from, to *Account, amount Money) error {
 	if from == nil || to == nil {
 		return ErrNilAccount
-	}
-
-	if from.balance < 0 || to.balance < 0 {
-		return ErrInvalidAmount
 	}
 
 	if from.balance < amount {
