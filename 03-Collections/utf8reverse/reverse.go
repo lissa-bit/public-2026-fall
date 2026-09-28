@@ -15,7 +15,7 @@ func Reverse(input string) string {
 	}
 
 	n := len(runes)
-	for j := 0; j < n; j++ {
+	for j := 0; j < n/2; j++ {
 		runes[j], runes[n-j-1] = runes[n-j-1], runes[j]
 	}
 
