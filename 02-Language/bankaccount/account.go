@@ -33,7 +33,7 @@ func Deposit(account *Account, amount Money) error {
 		return ErrInvalidAmount
 	}
 
-	if amount < 0 {
+	if amount <= 0 {
 		return ErrInvalidAmount
 	}
 
@@ -55,7 +55,7 @@ func Withdraw(account *Account, amount Money) error {
 		return ErrInsufficientFunds
 	}
 
-	if amount < 0 {
+	if amount <= 0 {
 		return ErrInvalidAmount
 	}
 
@@ -77,7 +77,7 @@ func Transfer(from, to *Account, amount Money) error {
 		return ErrInsufficientFunds
 	}
 
-	if amount < 0 {
+	if amount <= 0 {
 		return ErrInvalidAmount
 	}
 
