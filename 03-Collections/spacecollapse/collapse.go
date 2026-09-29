@@ -2,9 +2,36 @@
 
 package spacecollapse
 
+import (
+	"strings"
+	"unicode"
+	"unicode/utf8"
+)
+
 // CollapseSpaces replaces each non-empty run of Unicode spaces with one ASCII space.
 func CollapseSpaces(input string) string {
-	_ = input
+	var builder strings.Builder
 
-	return ""
+	space := false
+
+	for len(input) > 0 {
+		r, size := utf8.DecodeRuneInString(input)
+		input = input[size:]
+
+		if unicode.IsSpace(r) {
+			if !space {
+				space = true
+
+				builder.WriteByte(' ')
+			}
+
+			continue
+		}
+
+		builder.WriteRune(r)
+
+		space = false
+	}
+
+	return builder.String()
 }
