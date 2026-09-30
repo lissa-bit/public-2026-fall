@@ -14,20 +14,20 @@ func Eval(expression string) (int, error) {
 	for len(expression) > 0 {
 		r, size := utf8.DecodeRuneInString(expression)
 
-		neg_num := false
+		negNum := false
 
 		if r == '-' && len(expression) > size {
 			r1, _ := utf8.DecodeRuneInString(expression[size:])
-			neg_num = unicode.IsDigit(r1)
+			negNum = unicode.IsDigit(r1)
 		}
 
 		switch {
 		case unicode.IsSpace(r):
 			expression = expression[size:]
-		case unicode.IsDigit(r) || neg_num:
+		case unicode.IsDigit(r) || negNum:
 			num := 0
 
-			if neg_num {
+			if negNum {
 				expression = expression[size:]
 			}
 
@@ -42,7 +42,7 @@ func Eval(expression string) (int, error) {
 				i += size2
 			}
 
-			if neg_num {
+			if negNum {
 				num = -num
 			}
 
