@@ -59,14 +59,14 @@ func Eval(expression string) (int, error) {
 
 			var res int
 
-			switch {
-			case r == '+':
+			switch r {
+			case '+':
 				res = n1 + n2
-			case r == '*':
+			case '*':
 				res = n1 * n2
-			case r == '-':
+			case '-':
 				res = n2 - n1
-			case r == '/':
+			case '/':
 				if n1 == 0 {
 					return 0, ErrDivisionByZero
 				}
